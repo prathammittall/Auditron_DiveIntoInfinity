@@ -41,6 +41,7 @@ if not GOOGLE_API_KEY:
     raise ValueError("❌ GOOGLE_API_KEY not found in environment variables")
 
 
+
 # -------------------------
 # Rate Limiting Classes
 # -------------------------
@@ -713,3 +714,6 @@ if __name__ == "__main__":
         reload=False,
         log_level="info"
     )
+
+# For deployment platforms that auto-detect the app, expose the app variable
+app = app

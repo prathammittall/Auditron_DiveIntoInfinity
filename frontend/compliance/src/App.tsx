@@ -234,37 +234,46 @@ function App() {
     <div className="min-h-screen bg-secondary">
       {/* Header */}
       <div className="bg-primary shadow-sm">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
-          <div className="flex justify-between items-center py-3">
-            <div className="flex items-center space-x-2">
-              <div className="p-1.5 bg-primary rounded-lg">
-                <Shield className="h-6 w-6 text-secondary" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 bg-primary rounded-xl">
+                <Shield className="h-8 w-8 text-secondary" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-secondary">AI Compliance Agent</h1>
-                <p className="text-xs text-white">Dynamic Contract Compliance & Risk Assessment System</p>
+                <h1 className="text-2xl font-bold text-secondary">AI Compliance Agent</h1>
+                <p className="text-sm text-white">Dynamic Contract Compliance & Risk Assessment System</p>
               </div>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-1.5 px-2.5 py-1 bg-secondary rounded-lg">
-                <Sparkles className="h-3.5 w-3.5 text-primary" />
-                <span className="text-xs font-medium text-primary">PDF Validation Enabled</span>
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://auditron-wheat.vercel.app/"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-4 py-2 bg-primary text-secondary rounded-lg hover:opacity-90 transition-colors text-sm font-medium"
+                style={{ textDecoration: 'none' }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6" /></svg>
+                <span>Home</span>
+              </a>
+              <div className="flex items-center space-x-2 px-3 py-1.5 bg-secondary rounded-lg">
+                <Sparkles className="h-4 w-4 text-primary" />
+                <span className="text-sm font-medium text-primary">PDF Validation Enabled</span>
               </div>
               {completedDocs.length > 0 && (
                 <button
                   onClick={analyzeDocuments}
                   disabled={analyzing}
-                  className="flex items-center space-x-1.5 px-3 py-1.5 bg-primary text-secondary rounded-lg hover:opacity-90 disabled:opacity-50 transition-colors"
+                  className="flex items-center space-x-2 px-4 py-2 bg-primary text-secondary rounded-lg hover:opacity-90 disabled:opacity-50 transition-colors"
                 >
                   {analyzing ? (
                     <>
-                      <Clock className="h-3.5 w-3.5 animate-spin" />
-                      <span className="text-xs">Analyzing...</span>
+                      <Clock className="h-4 w-4 animate-spin" />
+                      <span>Analyzing...</span>
                     </>
                   ) : (
                     <>
-                      <Brain className="h-3.5 w-3.5" />
-                      <span className="text-xs">Analyze Documents ({completedDocs.length})</span>
+                      <Brain className="h-4 w-4" />
+                      <span>Analyze Documents ({completedDocs.length})</span>
                     </>
                   )}
                 </button>
@@ -277,11 +286,11 @@ function App() {
       {/* Analysis Progress Bar */}
       {analyzing && Object.keys(analysisProgress).length > 0 && (
         <div className="bg-amber-50 border-b border-amber-200">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2">
-            <div className="flex items-center space-x-3">
-              <Clock className="h-3.5 w-3.5 text-amber-600 animate-spin" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div className="flex items-center space-x-4">
+              <Clock className="h-4 w-4 text-amber-600 animate-spin" />
               <div className="flex-1">
-                <div className="text-xs font-medium text-amber-900 mb-1">Analysis in Progress</div>
+                <div className="text-sm font-medium text-amber-900 mb-1">Analysis in Progress</div>
                 <div className="space-y-1">
                   {Object.entries(analysisProgress).map(([docId, status]) => {
                     const doc = documents.find(d => d.id === docId);
@@ -301,44 +310,44 @@ function App() {
       {/* Stats Bar */}
       {(stats.totalClauses > 0 || errorDocs.length > 0) && (
         <div className="bg-secondary border-b border-primary/20">
-          <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-6">
-                <div className="flex items-center space-x-1.5">
-                  <FileText className="h-3.5 w-3.5 text-primary" />
-                  <span className="text-xs font-medium text-primary">
+              <div className="flex items-center space-x-8">
+                <div className="flex items-center space-x-2">
+                  <FileText className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium text-primary">
                     {documents.length} Documents ({completedDocs.length} valid)
                   </span>
                 </div>
                 {stats.totalClauses > 0 && (
                   <>
-                    <div className="flex items-center space-x-1.5">
-                      <Shield className="h-3.5 w-3.5 text-yellow-700" />
-                      <span className="text-xs font-medium text-stone-900">{stats.totalClauses} Clauses</span>
+                    <div className="flex items-center space-x-2">
+                      <Shield className="h-4 w-4 text-yellow-700" />
+                      <span className="text-sm font-medium text-stone-900">{stats.totalClauses} Clauses</span>
                     </div>
-                    <div className="flex items-center space-x-1.5">
-                      <Brain className="h-3.5 w-3.5 text-amber-600" />
-                      <span className="text-xs font-medium text-stone-900">{stats.totalRisks} Risks</span>
+                    <div className="flex items-center space-x-2">
+                      <Brain className="h-4 w-4 text-amber-600" />
+                      <span className="text-sm font-medium text-stone-900">{stats.totalRisks} Risks</span>
                     </div>
                     {stats.criticalRisks > 0 && (
-                      <div className="flex items-center space-x-1.5">
-                        <AlertTriangle className="h-3.5 w-3.5 text-red-600" />
-                        <span className="text-xs font-medium text-red-700">{stats.criticalRisks} Critical</span>
+                      <div className="flex items-center space-x-2">
+                        <AlertTriangle className="h-4 w-4 text-red-600" />
+                        <span className="text-sm font-medium text-red-700">{stats.criticalRisks} Critical</span>
                       </div>
                     )}
                   </>
                 )}
                 {errorDocs.length > 0 && (
-                  <div className="flex items-center space-x-1.5">
-                    <AlertTriangle className="h-3.5 w-3.5 text-red-600" />
-                    <span className="text-xs font-medium text-red-700">{errorDocs.length} Failed</span>
+                  <div className="flex items-center space-x-2">
+                    <AlertTriangle className="h-4 w-4 text-red-600" />
+                    <span className="text-sm font-medium text-red-700">{errorDocs.length} Failed</span>
                   </div>
                 )}
               </div>
               {stats.totalClauses > 0 && (
-                <div className="flex items-center space-x-1.5">
-                  <CheckCircle className="h-3.5 w-3.5 text-amber-600" />
-                  <span className="text-xs font-medium text-stone-900">Compliance Score: {stats.avgScore}%</span>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="h-4 w-4 text-amber-600" />
+                  <span className="text-sm font-medium text-stone-900">Compliance Score: {stats.avgScore}%</span>
                 </div>
               )}
             </div>
@@ -347,8 +356,8 @@ function App() {
       )}
 
       {/* Navigation */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-3">
-        <nav className="flex space-x-1 mb-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <nav className="flex space-x-1 mb-8">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const hasData = tab.id === 'upload' || analysis.length > 0;
@@ -358,7 +367,7 @@ function App() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 disabled={!hasData && tab.id !== 'upload'}
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg font-medium text-xs transition-colors ${
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
                   activeTab === tab.id
                     ? 'bg-primary text-secondary'
                     : hasData 
@@ -366,10 +375,10 @@ function App() {
                       : 'text-primary/40 cursor-not-allowed'
                 }`}
               >
-                <Icon className="h-3.5 w-3.5" />
+                <Icon className="h-4 w-4" />
                 <span>{tab.name}</span>
                 {tab.id === 'upload' && errorDocs.length > 0 && (
-                  <span className="bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  <span className="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {errorDocs.length}
                   </span>
                 )}
@@ -405,12 +414,12 @@ function App() {
 
           {/* Empty State */}
           {activeTab !== 'upload' && analysis.length === 0 && (
-            <div className="bg-secondary rounded-lg shadow-sm border border-primary/20 p-8 text-center">
-              <div className="p-3 bg-primary/10 rounded-full w-12 h-12 mx-auto mb-3">
-                <FileText className="h-6 w-6 text-primary mx-auto mt-1.5" />
+            <div className="bg-secondary rounded-lg shadow-sm border border-primary/20 p-12 text-center">
+              <div className="p-4 bg-primary/10 rounded-full w-16 h-16 mx-auto mb-4">
+                <FileText className="h-8 w-8 text-primary mx-auto mt-2" />
               </div>
-              <h3 className="text-base font-semibold text-primary mb-2">No Analysis Data Available</h3>
-              <p className="text-primary/80 mb-3 text-sm">
+              <h3 className="text-lg font-semibold text-primary mb-2">No Analysis Data Available</h3>
+              <p className="text-primary/80 mb-4">
                 Upload and analyze insurance documents to view compliance insights, clause inventory, and risk assessments.
               </p>
               {completedDocs.length > 0 ? (
@@ -418,18 +427,18 @@ function App() {
                   <button
                     onClick={analyzeDocuments}
                     disabled={analyzing}
-                    className="px-3 py-1.5 bg-primary text-secondary rounded-lg hover:opacity-90 disabled:opacity-50 transition-colors text-sm"
+                    className="px-4 py-2 bg-primary text-secondary rounded-lg hover:opacity-90 disabled:opacity-50 transition-colors"
                   >
                     {analyzing ? 'Analyzing...' : `Analyze ${completedDocs.length} Document(s)`}
                   </button>
-                  <p className="text-xs text-primary/60">
+                  <p className="text-sm text-primary/60">
                     {completedDocs.length} valid document(s) ready for analysis
                   </p>
                 </div>
               ) : (
                 <button
                   onClick={() => setActiveTab('upload')}
-                  className="px-3 py-1.5 bg-primary text-secondary rounded-lg hover:opacity-90 transition-colors text-sm"
+                  className="px-4 py-2 bg-primary text-secondary rounded-lg hover:opacity-90 transition-colors"
                 >
                   Upload Documents
                 </button>
@@ -439,15 +448,15 @@ function App() {
 
           {/* Processing State */}
           {analyzing && activeTab !== 'upload' && (
-            <div className="bg-secondary rounded-lg shadow-sm border border-primary/20 p-8 text-center">
-              <div className="p-3 bg-primary/10 rounded-full w-12 h-12 mx-auto mb-3">
-                <Brain className="h-6 w-6 text-primary mx-auto mt-1.5 animate-pulse" />
+            <div className="bg-secondary rounded-lg shadow-sm border border-primary/20 p-12 text-center">
+              <div className="p-4 bg-primary/10 rounded-full w-16 h-16 mx-auto mb-4">
+                <Brain className="h-8 w-8 text-primary mx-auto mt-2 animate-pulse" />
               </div>
-              <h3 className="text-base font-semibold text-primary mb-2">Analysis in Progress</h3>
-              <p className="text-primary/80 mb-3 text-sm">
+              <h3 className="text-lg font-semibold text-primary mb-2">Analysis in Progress</h3>
+              <p className="text-primary/80 mb-4">
                 AI agents are processing your documents. This may take a few moments.
               </p>
-              <div className="text-xs text-primary/60">
+              <div className="text-sm text-primary/60">
                 Processing {Object.keys(analysisProgress).length} document(s)...
               </div>
             </div>

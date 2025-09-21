@@ -43,40 +43,40 @@ export default function ClauseInventory({ clauses }: ClauseInventoryProps) {
   };
 
   const getConfidenceIcon = (confidence: number) => {
-    if (confidence >= 0.9) return <CheckCircle className="h-3.5 w-3.5 text-lime-500" />;
-    if (confidence >= 0.7) return <AlertTriangle className="h-3.5 w-3.5 text-yellow-500" />;
-    return <AlertTriangle className="h-3.5 w-3.5 text-red-500" />;
+    if (confidence >= 0.9) return <CheckCircle className="h-4 w-4 text-lime-500" />;
+    if (confidence >= 0.7) return <AlertTriangle className="h-4 w-4 text-yellow-500" />;
+    return <AlertTriangle className="h-4 w-4 text-red-500" />;
   };
 
   return (
     <div className="bg-stone-50 rounded-lg shadow-sm border border-stone-200">
-      <div className="p-4">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-stone-900">
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold text-stone-900">
             Clause Inventory & Categorization
           </h3>
-          <span className="bg-amber-100 text-amber-800 text-xs font-medium px-2 py-0.5 rounded">
+          <span className="bg-amber-100 text-amber-800 text-sm font-medium px-2.5 py-0.5 rounded">
             {filteredClauses.length} clauses
           </span>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 mb-4">
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="relative flex-1">
-            <Search className="h-3.5 w-3.5 text-stone-400 absolute left-2.5 top-2.5" />
+            <Search className="h-4 w-4 text-stone-400 absolute left-3 top-3" />
             <input
               type="text"
               placeholder="Search clauses..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-8 pr-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-white text-sm"
+              className="w-full pl-10 pr-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent bg-white"
             />
           </div>
           <div className="relative">
-            <Filter className="h-3.5 w-3.5 text-stone-400 absolute left-2.5 top-2.5" />
+            <Filter className="h-4 w-4 text-stone-400 absolute left-3 top-3" />
             <select
               value={selectedType}
               onChange={(e) => setSelectedType(e.target.value)}
-              className="pl-8 pr-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent appearance-none bg-white text-sm"
+              className="pl-10 pr-4 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent appearance-none bg-white"
             >
               <option value="all">All Types</option>
               <option value="coverage_terms">Coverage Terms</option>
@@ -89,12 +89,12 @@ export default function ClauseInventory({ clauses }: ClauseInventoryProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="space-y-3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
             {filteredClauses.map((clause) => (
               <div
                 key={clause.id}
-                className={`p-3 rounded-lg border-2 cursor-pointer transition-colors ${
+                className={`p-4 rounded-lg border-2 cursor-pointer transition-colors ${
                   selectedClause?.id === clause.id
                     ? 'border-amber-500 bg-amber-50'
                     : 'border-stone-200 hover:border-stone-300 bg-white'
@@ -112,8 +112,8 @@ export default function ClauseInventory({ clauses }: ClauseInventoryProps) {
                     {Math.round(clause.metadata.confidence * 100)}% confidence
                   </span>
                 </div>
-                <h4 className="font-medium text-stone-900 mb-1 text-sm">{clause.category}</h4>
-                <p className="text-xs text-stone-600 line-clamp-3">{clause.snippet}...</p>
+                <h4 className="font-medium text-stone-900 mb-2">{clause.category}</h4>
+                <p className="text-sm text-stone-600 line-clamp-3">{clause.snippet}...</p>
                 <div className="flex items-center justify-between mt-2 text-xs text-stone-500">
                   <span>{clause.metadata.section}</span>
                   {clause.metadata.page && <span>Page {clause.metadata.page}</span>}
@@ -123,60 +123,60 @@ export default function ClauseInventory({ clauses }: ClauseInventoryProps) {
           </div>
 
           {selectedClause && (
-            <div className="bg-stone-100 rounded-lg p-4">
-              <div className="flex items-center space-x-2 mb-3">
-                <FileText className="h-4 w-4 text-amber-700" />
-                <h4 className="font-semibold text-stone-900 text-sm">Clause Details</h4>
+            <div className="bg-stone-100 rounded-lg p-6">
+              <div className="flex items-center space-x-2 mb-4">
+                <FileText className="h-5 w-5 text-amber-700" />
+                <h4 className="font-semibold text-stone-900">Clause Details</h4>
               </div>
               
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-medium text-stone-700 mb-1">
+                  <label className="block text-sm font-medium text-stone-700 mb-1">
                     Category
                   </label>
                   <div className="flex items-center space-x-2">
                     <span className={`px-2 py-1 text-xs font-medium rounded ${getTypeColor(selectedClause.type)}`}>
                       {getTypeLabel(selectedClause.type)}
                     </span>
-                    <span className="text-xs text-stone-600">{selectedClause.category}</span>
+                    <span className="text-sm text-stone-600">{selectedClause.category}</span>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-stone-700 mb-1">
+                  <label className="block text-sm font-medium text-stone-700 mb-1">
                     Full Content
                   </label>
-                  <p className="text-xs text-stone-600 bg-white p-2 rounded border">
+                  <p className="text-sm text-stone-600 bg-white p-3 rounded border">
                     {selectedClause.content}
                   </p>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-stone-700 mb-1">
+                  <label className="block text-sm font-medium text-stone-700 mb-1">
                     Legal Rationale
                   </label>
-                  <p className="text-xs text-stone-600 bg-white p-2 rounded border">
+                  <p className="text-sm text-stone-600 bg-white p-3 rounded border">
                     {selectedClause.metadata.legalRationale}
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-stone-700 mb-1">
+                    <label className="block text-sm font-medium text-stone-700 mb-1">
                       Confidence Score
                     </label>
                     <div className="flex items-center space-x-2">
                       {getConfidenceIcon(selectedClause.metadata.confidence)}
-                      <span className="text-xs font-medium">
+                      <span className="text-sm font-medium">
                         {Math.round(selectedClause.metadata.confidence * 100)}%
                       </span>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-xs font-medium text-stone-700 mb-1">
+                    <label className="block text-sm font-medium text-stone-700 mb-1">
                       Location
                     </label>
-                    <p className="text-xs text-stone-600">
+                    <p className="text-sm text-stone-600">
                       {selectedClause.metadata.section}
                       {selectedClause.metadata.page && `, Page ${selectedClause.metadata.page}`}
                     </p>

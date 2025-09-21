@@ -178,12 +178,12 @@ function DocumentUpload({ onDocumentsUploaded, documents }: DocumentUploadProps)
 
   return (
     <div className="bg-primary/95 rounded-lg shadow-sm">
-      <div className="p-4">
+      <div className="p-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-base font-semibold text-secondary">Document Upload</h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-secondary">Document Upload</h3>
           {documents.length > 0 && (
-            <div className="text-xs text-secondary/80">
+            <div className="text-sm text-secondary/80">
               {validDocuments.length} valid • {errorDocuments.length} failed
             </div>
           )}
@@ -192,25 +192,25 @@ function DocumentUpload({ onDocumentsUploaded, documents }: DocumentUploadProps)
         {/* Dropzone */}
         <div
           {...getRootProps()}
-          className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+          className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
             isDragActive
               ? 'border-secondary bg-secondary/10'
               : 'border-secondary/30 hover:border-secondary/50'
           }`}
         >
           <input {...getInputProps()} />
-          <Upload className="h-8 w-8 text-secondary/60 mx-auto mb-3" />
+          <Upload className="h-12 w-12 text-secondary/60 mx-auto mb-4" />
           {isDragActive ? (
-            <p className="text-secondary font-medium text-sm">Drop the files here...</p>
+            <p className="text-secondary font-medium">Drop the files here...</p>
           ) : (
             <div>
-              <p className="text-secondary font-medium mb-2 text-sm">
+              <p className="text-secondary font-medium mb-2">
                 Drag & drop insurance documents here, or click to select files
               </p>
-              <p className="text-xs text-secondary/80">
+              <p className="text-sm text-secondary/80">
                 Supports PDF, DOCX, and Email files (up to 10MB each)
               </p>
-              <p className="text-xs text-secondary/60 mt-1">
+              <p className="text-xs text-secondary/60 mt-2">
                 Documents must contain insurance-related content to be processed
               </p>
             </div>
@@ -219,12 +219,12 @@ function DocumentUpload({ onDocumentsUploaded, documents }: DocumentUploadProps)
 
         {/* Validation Error Summary */}
         {Object.keys(validationErrors).length > 0 && (
-          <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
             <div className="flex items-start space-x-2">
-              <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5 flex-shrink-0" />
+              <AlertTriangle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
               <div>
-                <h4 className="text-xs font-medium text-red-800 mb-1">Document Validation Issues</h4>
-                <p className="text-xs text-red-700 mb-1">
+                <h4 className="text-sm font-medium text-red-800 mb-1">Document Validation Issues</h4>
+                <p className="text-sm text-red-700 mb-2">
                   Some documents failed validation. Only insurance-related documents can be processed.
                 </p>
                 <div className="text-xs text-red-600">
@@ -237,31 +237,31 @@ function DocumentUpload({ onDocumentsUploaded, documents }: DocumentUploadProps)
 
         {/* Uploaded Documents */}
         {documents.length > 0 && (
-          <div className="mt-4">
-            <h4 className="text-xs font-medium text-secondary mb-2">
+          <div className="mt-6">
+            <h4 className="text-sm font-medium text-secondary mb-3">
               Uploaded Documents ({documents.length})
             </h4>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {documents.map((doc) => (
                 <div
                   key={doc.id}
-                  className={`flex items-center justify-between p-2 rounded-lg ${
+                  className={`flex items-center justify-between p-3 rounded-lg ${
                     doc.status === 'error' 
                       ? 'bg-red-900/20 border border-red-700/30' 
                       : 'bg-secondary/10'
                   }`}
                 >
-                  <div className="flex items-center space-x-2">
-                    <FileIcon className={`h-6 w-6 ${
+                  <div className="flex items-center space-x-3">
+                    <FileIcon className={`h-8 w-8 ${
                       doc.status === 'error' ? 'text-red-500' : 'text-amber-700'
                     }`} />
                     <div>
-                      <p className={`text-xs font-medium ${
+                      <p className={`text-sm font-medium ${
                         doc.status === 'error' ? 'text-red-300' : 'text-secondary'
                       }`}>
                         {doc.name}
                       </p>
-                      <div className="flex items-center space-x-1 text-xs text-secondary/70">
+                      <div className="flex items-center space-x-2 text-xs text-secondary/70">
                         <span>{doc.type}</span>
                         <span>•</span>
                         <span>{formatFileSize(doc.size)}</span>
@@ -283,7 +283,7 @@ function DocumentUpload({ onDocumentsUploaded, documents }: DocumentUploadProps)
                       onClick={() => removeDocument(doc.id)}
                       className="p-1 text-stone-400 hover:text-red-500 transition-colors"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="h-4 w-4" />
                     </button>
                   </div>
                 </div>
@@ -294,9 +294,9 @@ function DocumentUpload({ onDocumentsUploaded, documents }: DocumentUploadProps)
 
         {/* Upload Tips */}
         {documents.length === 0 && (
-          <div className="mt-4 p-3 bg-secondary text-black border border-secondary rounded-lg">
-            <h4 className="text-xs font-medium mb-2">Tips for successful uploads:</h4>
-            <ul className="text-xs space-y-1">
+          <div className="mt-6 p-4 bg-secondary text-black border border-secondary rounded-lg">
+            <h4 className="text-sm font-medium  mb-2">Tips for successful uploads:</h4>
+            <ul className="text-sm  space-y-1">
               <li>• Upload insurance policies, health insurance documents, or related contracts</li>
               <li>• Ensure documents contain insurance terminology (coverage, premium, policy, etc.)</li>
               <li>• Supported formats: PDF, DOCX, EML, TXT</li>

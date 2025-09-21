@@ -48,53 +48,53 @@ export default function ComplianceDashboard({ complianceStatus, executiveSummary
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Executive Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-stone-50 p-4 rounded-lg shadow-sm border border-stone-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="bg-stone-50 p-6 rounded-lg shadow-sm border border-stone-200">
           <div className="flex items-center">
-            <div className="p-1.5 bg-amber-100 rounded-lg">
-              <FileText className="h-5 w-5 text-amber-700" />
+            <div className="p-2 bg-amber-100 rounded-lg">
+              <FileText className="h-6 w-6 text-amber-700" />
             </div>
-            <div className="ml-3">
-              <p className="text-xs font-medium text-stone-600">Total Clauses</p>
-              <p className="text-xl font-bold text-stone-900">{executiveSummary.totalClauses}</p>
+            <div className="ml-4">
+              <p className="text-sm font-medium text-stone-600">Total Clauses</p>
+              <p className="text-2xl font-bold text-stone-900">{executiveSummary.totalClauses}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-stone-50 p-4 rounded-lg shadow-sm border border-stone-200">
+        <div className="bg-stone-50 p-6 rounded-lg shadow-sm border border-stone-200">
           <div className="flex items-center">
-            <div className="p-1.5 bg-red-100 rounded-lg">
-              <AlertTriangle className="h-5 w-5 text-red-600" />
+            <div className="p-2 bg-red-100 rounded-lg">
+              <AlertTriangle className="h-6 w-6 text-red-600" />
             </div>
-            <div className="ml-3">
-              <p className="text-xs font-medium text-stone-600">Critical Risks</p>
-              <p className="text-xl font-bold text-stone-900">{executiveSummary.criticalRisks}</p>
+            <div className="ml-4">
+              <p className="text-sm font-medium text-stone-600">Critical Risks</p>
+              <p className="text-2xl font-bold text-stone-900">{executiveSummary.criticalRisks}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-stone-50 p-4 rounded-lg shadow-sm border border-stone-200">
+        <div className="bg-stone-50 p-6 rounded-lg shadow-sm border border-stone-200">
           <div className="flex items-center">
-            <div className="p-1.5 bg-amber-100 rounded-lg">
-              <XCircle className="h-5 w-5 text-amber-600" />
+            <div className="p-2 bg-amber-100 rounded-lg">
+              <XCircle className="h-6 w-6 text-amber-600" />
             </div>
-            <div className="ml-3">
-              <p className="text-xs font-medium text-stone-600">Compliance Gaps</p>
-              <p className="text-xl font-bold text-stone-900">{executiveSummary.complianceGaps}</p>
+            <div className="ml-4">
+              <p className="text-sm font-medium text-stone-600">Compliance Gaps</p>
+              <p className="text-2xl font-bold text-stone-900">{executiveSummary.complianceGaps}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-stone-50 p-4 rounded-lg shadow-sm border border-stone-200">
+        <div className="bg-stone-50 p-6 rounded-lg shadow-sm border border-stone-200">
           <div className="flex items-center">
-            <div className="p-1.5 bg-lime-100 rounded-lg">
-              <Shield className="h-5 w-5 text-lime-600" />
+            <div className="p-2 bg-lime-100 rounded-lg">
+              <Shield className="h-6 w-6 text-lime-600" />
             </div>
-            <div className="ml-3">
-              <p className="text-xs font-medium text-stone-600">Compliance Score</p>
-              <p className={`text-xl font-bold ${getOverallStatusColor(complianceStatus.overall)}`}>
+            <div className="ml-4">
+              <p className="text-sm font-medium text-stone-600">Compliance Score</p>
+              <p className={`text-2xl font-bold ${getOverallStatusColor(complianceStatus.overall)}`}>
                 {complianceStatus.score}%
               </p>
             </div>
@@ -102,11 +102,11 @@ export default function ComplianceDashboard({ complianceStatus, executiveSummary
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Compliance Status Chart */}
-        <div className="bg-stone-50 p-4 rounded-lg shadow-sm border border-stone-200">
-          <h3 className="text-base font-semibold text-stone-900 mb-3">Compliance Overview</h3>
-          <div className="h-48">
+        <div className="bg-stone-50 p-6 rounded-lg shadow-sm border border-stone-200">
+          <h3 className="text-lg font-semibold text-stone-900 mb-4">Compliance Overview</h3>
+          <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -114,8 +114,8 @@ export default function ComplianceDashboard({ complianceStatus, executiveSummary
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, value, payload }: any) => `${name} ${((value / payload.payload.value) * 100).toFixed(0)}%`}
-                  outerRadius={60}
+                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"
                 >
@@ -127,26 +127,26 @@ export default function ComplianceDashboard({ complianceStatus, executiveSummary
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-3 text-center">
-            <p className={`text-base font-semibold ${getOverallStatusColor(complianceStatus.overall)}`}>
+          <div className="mt-4 text-center">
+            <p className={`text-lg font-semibold ${getOverallStatusColor(complianceStatus.overall)}`}>
               Overall Status: {complianceStatus.overall.replace('_', ' ').toUpperCase()}
             </p>
           </div>
         </div>
 
         {/* Top Risks Chart */}
-        <div className="bg-stone-50 p-4 rounded-lg shadow-sm border border-stone-200">
-          <h3 className="text-base font-semibold text-stone-900 mb-3">Top Financial Risks</h3>
-          <div className="h-48">
+        <div className="bg-stone-50 p-6 rounded-lg shadow-sm border border-stone-200">
+          <h3 className="text-lg font-semibold text-stone-900 mb-4">Top Financial Risks</h3>
+          <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={riskData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis 
                   dataKey="name" 
-                  tick={{ fontSize: 9 }}
+                  tick={{ fontSize: 10 }}
                   angle={-45}
                   textAnchor="end"
-                  height={50}
+                  height={60}
                 />
                 <YAxis 
                   label={{ value: 'Exposure ($M)', angle: -90, position: 'insideLeft' }}
@@ -163,15 +163,15 @@ export default function ComplianceDashboard({ complianceStatus, executiveSummary
 
       {/* Detailed Compliance Status */}
       <div className="bg-stone-50 rounded-lg shadow-sm border border-stone-200">
-        <div className="p-4">
-          <h3 className="text-base font-semibold text-stone-900 mb-3">Regulatory Compliance Details</h3>
-          <div className="space-y-3">
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-stone-900 mb-4">Regulatory Compliance Details</h3>
+          <div className="space-y-4">
             {complianceStatus.regulations.map((regulation, index) => (
-              <div key={index} className="border border-stone-200 rounded-lg p-3 bg-white">
+              <div key={index} className="border border-stone-200 rounded-lg p-4 bg-white">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center space-x-2">
                     {getStatusIcon(regulation.status)}
-                    <h4 className="font-medium text-stone-900 text-sm">{regulation.name}</h4>
+                    <h4 className="font-medium text-stone-900">{regulation.name}</h4>
                   </div>
                   <span className={`px-2 py-1 text-xs font-medium rounded ${
                     regulation.status === 'aligned' ? 'bg-lime-100 text-lime-800' :
@@ -182,9 +182,9 @@ export default function ComplianceDashboard({ complianceStatus, executiveSummary
                   </span>
                 </div>
                 {regulation.issues.length > 0 && (
-                  <div className="ml-6">
-                    <p className="text-xs font-medium text-stone-700 mb-1">Issues:</p>
-                    <ul className="text-xs text-stone-600 list-disc list-inside space-y-1">
+                  <div className="ml-7">
+                    <p className="text-sm font-medium text-stone-700 mb-1">Issues:</p>
+                    <ul className="text-sm text-stone-600 list-disc list-inside space-y-1">
                       {regulation.issues.map((issue, issueIndex) => (
                         <li key={issueIndex}>{issue}</li>
                       ))}
@@ -198,28 +198,28 @@ export default function ComplianceDashboard({ complianceStatus, executiveSummary
       </div>
 
       {/* Executive Summary */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="bg-stone-50 rounded-lg shadow-sm border border-stone-200 p-4">
-          <h3 className="text-base font-semibold text-stone-900 mb-3">Coverage Gaps Identified</h3>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-stone-50 rounded-lg shadow-sm border border-stone-200 p-6">
+          <h3 className="text-lg font-semibold text-stone-900 mb-4">Coverage Gaps Identified</h3>
           <ul className="space-y-2">
             {executiveSummary.coverageGaps.map((gap, index) => (
               <li key={index} className="flex items-start space-x-2">
                 <AlertTriangle className="h-4 w-4 text-amber-500 mt-0.5 flex-shrink-0" />
-                <span className="text-xs text-stone-700">{gap}</span>
+                <span className="text-sm text-stone-700">{gap}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="bg-stone-50 rounded-lg shadow-sm border border-stone-200 p-4">
-          <h3 className="text-base font-semibold text-stone-900 mb-3">Recommended Next Steps</h3>
+        <div className="bg-stone-50 rounded-lg shadow-sm border border-stone-200 p-6">
+          <h3 className="text-lg font-semibold text-stone-900 mb-4">Recommended Next Steps</h3>
           <ul className="space-y-2">
             {executiveSummary.nextSteps.map((step, index) => (
               <li key={index} className="flex items-start space-x-2">
-                <div className="w-4 h-4 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-xs font-medium mt-0.5 flex-shrink-0">
+                <div className="w-5 h-5 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-xs font-medium mt-0.5 flex-shrink-0">
                   {index + 1}
                 </div>
-                <span className="text-xs text-stone-700">{step}</span>
+                <span className="text-sm text-stone-700">{step}</span>
               </li>
             ))}
           </ul>

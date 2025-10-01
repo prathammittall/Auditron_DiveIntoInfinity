@@ -706,13 +706,17 @@ async def health_check():
     }
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8501))
+    # Ensure we bind to the port provided by the deployment platform
+    port = int(os.environ.get("PORT", "8501"))
+    # Explicitly bind to 0.0.0.0 to accept all incoming connections
+    host = os.environ.get("HOST", "0.0.0.0")
     uvicorn.run(
         "main:app", 
-        host="0.0.0.0",
+        host=host,
         port=port, 
         reload=False,
-        log_level="info"
+        log_level="info",
+        workers=1  # Explicitly set worker count
     )
 
 # For deployment platforms that auto-detect the app, expose the app variable

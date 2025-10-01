@@ -1,0 +1,12 @@
+{
+  "name": "auditron-root",
+  "version": "1.0.0",
+  "description": "Root package for Auditron project",
+  "main": "main.py",
+  "scripts": {
+    "start": "echo No root start script",
+    "test": "echo No root test script"
+  },
+  "author": "",
+  "license": "ISC"
+}
